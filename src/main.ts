@@ -1,8 +1,12 @@
 import { createApp } from 'vue'
-import './style.css'
+import './app.css'
 import App from './App.vue'
 import 'typeface-poppins'
 import 'typeface-nunito'
+import 'typeface-montserrat'
+import 'typeface-jetbrains-mono'
+import 'typeface-inter'
+import router from './routes'
 
 
-createApp(App).mount('#app')
+createApp(App).use(router).mount('#app')

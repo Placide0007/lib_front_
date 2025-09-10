@@ -1,0 +1,26 @@
+@import 'tailwindcss';
+
+@theme  {
+   --font-primary:JetBrains Mono NL;
+   --font-secondary:montserrat;
+   --font-tertiary:inter;
+}
+
+@layer utilities {
+    body{
+        font-family: var(--font-primary);
+        @apply text-slate-700
+    }
+
+    header .nav-item{
+        @apply hover:bg-gray-200  rounded-xs px-3 py-2
+    }
+
+    header .active{
+        @apply bg-gray-200
+    }
+
+    aside .active{
+        @apply bg-gray-200 w-full text-center  text-slate-800
+    }
+}

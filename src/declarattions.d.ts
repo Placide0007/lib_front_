@@ -1,0 +1,5 @@
+declare module 'typeface-poppins'
+declare module 'typeface-nunito'
+declare module 'typeface-jetbrains-mono'
+declare module 'typeface-montserrat'
+declare module 'typeface-inter'
