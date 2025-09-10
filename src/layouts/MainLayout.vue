@@ -1,7 +1,7 @@
 <template>
     <main class="flex flex-col min-h-screen">
         <Header/>
-        <section class="grow p-3">
+        <section class="grow p-3 mt-10 md:mt-0">
             <router-view/>
         </section>
         <Footer/>
