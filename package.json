@@ -11,9 +11,12 @@
   "dependencies": {
     "@tailwindcss/vite": "^4.1.13",
     "axios": "^1.11.0",
+    "sweetalert2": "^11.22.5",
     "tailwindcss": "^4.1.13",
+    "typeface-dancing-script": "^1.1.13",
     "typeface-inter": "^3.18.1",
     "typeface-jetbrains-mono": "^2.0.1",
+    "typeface-merienda": "^1.1.13",
     "typeface-montserrat": "^1.1.13",
     "typeface-nunito": "^1.1.13",
     "typeface-poppins": "^1.1.13",

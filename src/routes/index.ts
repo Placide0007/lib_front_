@@ -1,14 +1,19 @@
 import { createRouter, createWebHistory } from "vue-router";
-import MainLayout from "../layouts/MainLayout.vue";
 import Historic from "../pages/historic/Historic.vue";
 import Home from "../pages/home/Home.vue";
 import Profile from "../pages/profile/Profile.vue";
 import AuthLayout from "../layouts/AuthLayout.vue";
 import Login from "../pages/auth/login/Login.vue";
 import AdminLayout from "../layouts/AdminLayout.vue";
-import UserList from "../pages/admin/user/UserList.vue";
+import UserList from "../pages/admin/user/UserLists.vue";
 import Dashboard from "../pages/admin/dashboard/Dashboard.vue";
-import BookList from "../pages/admin/book/BookList.vue";
+import BookList from "../pages/admin/book/BooksList.vue";
+import Register from "../pages/auth/register/Register.vue";
+import CreateBook from "../pages/admin/book/CreateBook.vue";
+import MainLayout from "../layouts/MainLayout.vue";
+import EditBook from "../pages/admin/book/EditBook.vue";
+import CategoriesList from "../pages/admin/category/CategoriesList.vue";
+import CreateCategory from "../pages/admin/category/CreateCategory.vue";
 
 
 const routes = [
@@ -33,7 +38,8 @@ const routes = [
                 path:'/profile',
                 name:'profile',
                 component:Profile
-            }
+            },
+            
         ]
     },
 
@@ -47,6 +53,26 @@ const routes = [
                 path:'/login',
                 name:'login',
                 component:Login
+            },
+            {
+                path:'/register',
+                name:'register',
+                component:Register
+            },
+            {
+                path:'/create-book',
+                name:'create-book',
+                component:CreateBook
+            },
+            {
+                path:'/create-category',
+                name:'create-category',
+                component:CreateCategory
+            },
+            {
+                path:'/edit-book/:id',
+                name:'edit-book',
+                component:EditBook
             }
         ]
     
@@ -72,6 +98,11 @@ const routes = [
                 path:'/books-list',
                 name:'booksList',
                 component:BookList
+            },
+            {
+                path:'/categories-list',
+                name:'categoriesList',
+                component:CategoriesList
             }
         ]
     

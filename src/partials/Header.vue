@@ -19,8 +19,13 @@
         </nav>
 
         <!-- Desktop Sign in -->
-        <router-link class="hidden md:inline border border-gray-400 py-2 px-5 hover:rounded-sm" to="/login">Sign
+        <router-link v-if="!userData" class="hidden md:inline border border-gray-400 py-2 px-5 hover:rounded-sm"
+            to="/login">Sign
             in</router-link>
+        <div class="hidden md:inline" v-else>
+            <button class=" border bg-slate-800 text-white py-2 px-5 hover:rounded-sm">{{ userData.name }}</button>
+            <button class=" border cursor-pointer border-gray-400 py-2 px-5 hover:rounded-sm" @click="logout">Logout</button>
+        </div>
 
         <!-- Mobile dropdown -->
         <div v-if="isOpen"
@@ -41,15 +46,36 @@
 </template>
 
 <script setup>
-    import { ref } from 'vue'
+import { ref } from 'vue'
 
-    const isOpen = ref(false)
+const isOpen = ref(false)
 
-    const toggleMenu = () => {
-        isOpen.value = !isOpen.value
-    }
+const toggleMenu = () => {
+    isOpen.value = !isOpen.value
+}
 
-    const closeMenu = () => {
-        isOpen.value = false
-    }
+const closeMenu = () => {
+    isOpen.value = false
+}
+
+import { computed } from 'vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+
+const userData = computed(() => {
+    const user = localStorage.getItem("user_data");
+    return user ? JSON.parse(user) : null;
+});
+
+const userRole = computed(() => {
+    return userData.value ? userData.value.role : '';
+});
+
+const logout = () => {
+    localStorage.removeItem("user_data");
+    localStorage.removeItem("auth_token");
+    router.push("/login");
+};
+
 </script>
