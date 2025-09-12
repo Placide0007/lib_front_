@@ -1,28 +1,55 @@
 @import 'tailwindcss';
 
-@theme  {
-   --font-primary:Merienda;
-   --font-secondary:montserrat;
-   --font-tertiary:inter;
+
+:root {
+  --font-primary: 'Merienda', cursive;
+  --font-secondary: 'Montserrat', sans-serif;
+  --font-tertiary: 'Inter', sans-serif;
 }
 
+
+@layer base {
+  body {
+    font-family: var(--font-primary);
+    @apply text-slate-700 scroll-p-0;
+  }
+
+
+  * {
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: #a0aec0 #edf2f7;
+  }
+
+  *::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #a0aec0;
+    border-radius: 4px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background-color: #edf2f7;
+  }
+}
+
+
 @layer utilities {
-    body{
-        font-family: var(--font-primary);
-        @apply text-slate-700
-    }
+  header .nav-item {
+    @apply hover:bg-gray-200 rounded-xs px-3 py-2;
+  }
 
-    header .nav-item{
-        @apply hover:bg-gray-200  rounded-xs px-3 py-2
-    }
+  header .active {
+    @apply bg-gray-200;
+  }
 
-    
+  aside .active {
+    @apply bg-gray-200 w-full text-center text-slate-800;
+  }
 
-    header .active{
-        @apply bg-gray-200
-    }
-
-    aside .active{
-        @apply bg-gray-200 w-full text-center  text-slate-800
-    }
+  button.category-btn.active {
+    @apply bg-slate-800 text-white;
+  }
 }

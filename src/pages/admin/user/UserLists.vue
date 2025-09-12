@@ -1,6 +1,6 @@
 <template>
     <div class="w-full">
-        <div class="mb-1 flex justify-between items-center" >
+        <div class="mb-1 flex justify-between items-center py-3 md:py-0" >
             <p class="table-caption text-sm text-slate-500">Users list</p>
         </div>
         <div class="overflow-x-auto">
@@ -62,26 +62,27 @@
 
     const deleteUser = async (id) => {
         const result = await Swal.fire({
-            title: 'Confirmer la suppression ?',
+            title: 'Confirm deletion?',
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonText: 'Supprimer',
-            cancelButtonText: 'Annuler',
+            confirmButtonText: 'Delete',
+            cancelButtonText: 'Cancel',
         });
 
         if (!result.isConfirmed) return;
 
         try {
             await api.delete(`/users/${id}`);
+            // "https://laravel-api.onrender.com/api/posts"
             users.value = users.value.filter(user => user.id !== id);
 
             if (currentPage.value > totalPages.value) {
                 currentPage.value = totalPages.value || 1;
             }
 
-            Swal.fire('Supprimé!', 'L’utilisateur a été supprimé.', 'success');
+            Swal.fire('Deleted!', 'The book has been deleted.', 'success');
         } catch {
-            Swal.fire('Erreur', 'Une erreur est survenue lors de la suppression.', 'error');
+            Swal.fire('Erreur', 'An error occurred while deleting the book.', 'error');
         }
     };
 

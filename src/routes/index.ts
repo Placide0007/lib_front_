@@ -14,6 +14,7 @@ import MainLayout from "../layouts/MainLayout.vue";
 import EditBook from "../pages/admin/book/EditBook.vue";
 import CategoriesList from "../pages/admin/category/CategoriesList.vue";
 import CreateCategory from "../pages/admin/category/CreateCategory.vue";
+import EditCategory from "../pages/admin/category/EditCategory.vue";
 
 
 const routes = [
@@ -73,6 +74,11 @@ const routes = [
                 path:'/edit-book/:id',
                 name:'edit-book',
                 component:EditBook
+            },
+            {
+                path:'/edit-category/:id',
+                name:'edit-category',
+                component:EditCategory
             }
         ]
     

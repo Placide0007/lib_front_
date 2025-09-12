@@ -12,6 +12,7 @@
     "@tailwindcss/vite": "^4.1.13",
     "axios": "^1.11.0",
     "sweetalert2": "^11.22.5",
+    "tailwind-scrollbar": "^4.0.2",
     "tailwindcss": "^4.1.13",
     "typeface-dancing-script": "^1.1.13",
     "typeface-inter": "^3.18.1",

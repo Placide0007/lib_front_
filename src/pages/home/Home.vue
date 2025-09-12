@@ -27,43 +27,104 @@
         </div>
 
         <!-- categories container  -->
-        <div class="categories-list flex gap-5  py-4 px-2">
-            <button class="bg-gray-400 text-white rounded-sm p-2 text-xs cursor-pointer" >Romantique</button>
-            <button class="bg-gray-400 text-white rounded-sm p-2 text-xs cursor-pointer" >Romantique</button>
+        <div class="categories-list flex gap-5  py-4 px-2 overflow-x-auto scrollbar">
+            <button class="cursor-pointer category-btn hover:bg-gray-200 rounded py-1 px-2" :class="{ active: selectedCategoryId === null }" @click="selectCategory(null)">All</button>
+            <button  v-for="category in categories" :key="category.id" class="cursor-pointer category-btn hover:bg-gray-200 rounded py-1 px-2"
+                :class="{ active: selectedCategoryId === category.id }"   @click="selectCategory(category.id)">
+                {{ category.category_name }}
+            </button>
         </div>
 
         <!-- card container -->
-        <div class="grid grid-cols-2 md:grid-cols-5 gap-5 p-2">
-            <div class="card">
-                <div> <img src="../../assets/3.jpg" alt="book image"
-                        class="cursor-pointer h-auto grayscale-0 hover:grayscale-75 hover:-translate-y-2 duration-300 w-full">
-                    <p class="text-center text-xs mt-2">Lorem ipsum dolor.</p>
+        <div class="grid grid-cols-2 md:grid-cols-7 gap-5 p-2">
+            <div v-for="book in paginatedBooks" :key="book.id" class="card" @click="goToBook(book.id)">
+                <div class="grayscale-0 hover:grayscale-75 hover:-translate-y-2 duration-300">
+                    <router-link :to="`/books/${book.id}/show`">
+                        <picture>
+                            <source :srcset="book.cover_image_webp" type="image/webp" />
+                            <img :src="book.cover_image" :alt="book.title" loading="lazy" :width="book.image_width"
+                                :height="book.image_height" />
+                        </picture>
+                    </router-link>
                 </div>
+                <h3 class="text-center text-sm p-2 text-slate-800">{{ book.title }}</h3>
             </div>
-            <div class="card">
-                <div> <img src="../../assets/5.jpg" alt="book image"
-                        class="cursor-pointer h-auto grayscale-0 hover:grayscale-75 hover:-translate-y-2 duration-300 w-full">
-                    <p class="text-center text-xs mt-2">Lorem ipsum dolor.</p>
-                </div>
+
+            <div class="nobookFound" v-if="filteredBooks.length === 0">
+                <p>No books found</p>
             </div>
-            <div class="card">
-                <div> <img src="../../assets/5.jpg" alt="book image"
-                        class="cursor-pointer h-auto grayscale-0 hover:grayscale-75 hover:-translate-y-2 duration-300 w-full">
-                    <p class="text-center text-xs mt-2">Lorem ipsum dolor.</p>
-                </div>
-            </div>
-            <div class="card">
-                <div> <img src="../../assets/8.jpg" alt="book image"
-                        class="cursor-pointer h-auto grayscale-0 hover:grayscale-75 hover:-translate-y-2 duration-300 w-full">
-                    <p class="text-center text-xs mt-2">Lorem ipsum dolor.</p>
-                </div>
-            </div>
-            <div class="card">
-                <div> <img src="../../assets/3.jpg" alt="book image"
-                        class="cursor-pointer h-auto grayscale-0 hover:grayscale-75 hover:-translate-y-2 duration-300 w-full">
-                    <p class="text-center text-xs mt-2">Lorem ipsum dolor.</p>
-                </div>
-            </div>
+        </div>
+        <div  v-if="filteredBooks.length > perPage" class="flex gap-4 p-5 justify-center items-center">
+            <button class="bg-slate-900 text-white py-1 px-3 rounded-sm" :disabled="currentPage === 1" @click="currentPage--">Previous</button>
+            <span>Page {{ currentPage }}</span>
+            <button class="bg-slate-900 text-white py-1 px-3 rounded-sm" :disabled="currentPage >= Math.ceil(filteredBooks.length / perPage)"
+                @click="currentPage++">Next</button>
         </div>
     </section>
 </template>
+<script setup>
+    import { ref, computed, onMounted } from 'vue';
+    import api from '../../axios';
+    import { useRouter } from 'vue-router';
+
+    const categories = ref([]);
+    const books = ref([]);
+    const selectedCategoryId = ref(null);
+    const currentPage = ref(1);
+    const perPage = 12;
+    const router = useRouter();
+
+    const userData = computed(() => {
+        const user = localStorage.getItem("user_data");
+        return user ? JSON.parse(user) : null;
+    });
+
+    const fetchCategories = async () => {
+        try {
+            const res = await api.get('/categories');
+            categories.value = res.data.categories;
+        } catch (error) {
+            console.error('Failed to fetch categories', error);
+        }
+    };
+
+    const fetchBooks = async () => {
+        try {
+            const res = await api.get('/books');
+            books.value = res.data.books;
+        } catch (error) {
+            console.error('Failed to fetch books', error);
+        }
+    };
+
+    onMounted(() => {
+        fetchCategories();
+        fetchBooks();
+    });
+
+
+    const selectCategory = (id) => {
+        selectedCategoryId.value = id;
+        currentPage.value = 1;
+    };
+
+    const filteredBooks = computed(() => {
+        if (selectedCategoryId.value === null) return books.value;
+        return books.value.filter(book => {
+            if (Array.isArray(book.categories)) {
+                return book.categories.some(cat => cat.id === selectedCategoryId.value);
+            }
+            return book.category_id === selectedCategoryId.value;
+        });
+    });
+
+
+    const paginatedBooks = computed(() => {
+        const start = (currentPage.value - 1) * perPage;
+        return filteredBooks.value.slice(start, start + perPage);
+    });
+
+    const goToBook = (id) => {
+        router.push(`/books/${id}`);
+    };
+</script>

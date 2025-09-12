@@ -76,12 +76,12 @@
 
     try {
         const response = await api.post('/books', formData, {
-            headers: { 'Content-Type': 'multipart/form-data' },
+            headers: { 'Content-Type': 'multipart/form-data' }, 
         });
         const bookData = response.data.books;
         localStorage.setItem('book_data', JSON.stringify(bookData));
         Swal.fire('Book created successfully');
-        router.push('/booksList');
+        router.push('/books-list');
     } catch (error) {
         if (error.response?.data?.errors) {
             const validationErrors = error.response.data.errors;
