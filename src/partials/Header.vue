@@ -3,7 +3,7 @@
     <!-- Header -->
     <header
         class="md:sticky fixed top-0 left-0 w-full z-20 bg-white border-b-2 border-b-slate-800 py-1 px-6 md:px-10 flex justify-between items-center">
-        <p class="font-bold text-2xl">LOGO</p>
+        <p class="font-bold text-2xl">Library</p>
 
         <!-- Hamburger -->
         <button @click="toggleMenu" class="md:hidden text-3xl">

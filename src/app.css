@@ -2,21 +2,20 @@
 
 
 :root {
-  --font-primary: 'Merienda', cursive;
-  --font-secondary: 'Montserrat', sans-serif;
-  --font-tertiary: 'Inter', sans-serif;
+  --font-primary: 'Dancing script';
+  --font-secondary: 'Montserrat';
+  --font-tertiary: 'Inter';
 }
 
 
 @layer base {
   body {
-    font-family: var(--font-primary);
     @apply text-slate-700 scroll-p-0;
   }
 
 
   * {
-    scrollbar-width: thin; /* Firefox */
+    scrollbar-width: thin; 
     scrollbar-color: #a0aec0 #edf2f7;
   }
 

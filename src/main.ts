@@ -7,6 +7,8 @@ import 'typeface-montserrat'
 import 'typeface-jetbrains-mono'
 import 'typeface-inter'
 import 'typeface-merienda'
+import 'typeface-saira'
+import 'typeface-caveat'
 import 'typeface-dancing-script'
 import router from './routes'
 
