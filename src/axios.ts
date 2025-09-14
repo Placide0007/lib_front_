@@ -1,7 +1,7 @@
-import axios from "axios";
+import axios from 'axios';
 
 const api = axios.create({
-    baseURL: 'https://placide-api.railway.app/api'
+  baseURL: 'https://accomplished-reverence.up.railway.app/api'
 });
 
 export default api;
