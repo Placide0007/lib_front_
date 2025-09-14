@@ -14,7 +14,7 @@
             <router-link exact-active-class="active" class="nav-item" to="/">Home</router-link>
             <router-link exact-active-class="active" class="nav-item" to="/historic">Historic</router-link>
             <router-link exact-active-class="active" class="nav-item" to="/profile">Profile</router-link>
-            <router-link  exact-active-class="active" class="nav-item"
+            <router-link v-if="userRole === 'admin'" exact-active-class="active" class="nav-item"
                 to="/admin">Admin</router-link>
         </nav>
 
