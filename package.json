@@ -25,7 +25,8 @@
     "typeface-poppins": "^1.1.13",
     "typeface-saira": "^1.1.13",
     "vue": "^3.5.18",
-    "vue-router": "^4.5.1"
+    "vue-router": "^4.5.1",
+    "vue-star-rating": "^1.7.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^6.0.1",

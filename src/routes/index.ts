@@ -15,6 +15,8 @@ import EditBook from "../pages/admin/book/EditBook.vue";
 import CategoriesList from "../pages/admin/category/CategoriesList.vue";
 import CreateCategory from "../pages/admin/category/CreateCategory.vue";
 import EditCategory from "../pages/admin/category/EditCategory.vue";
+import ShowBook from "../pages/admin/book/ShowBook.vue";
+import LoanList from "../pages/admin/loan/LoanList.vue";
 
 
 const routes = [
@@ -76,6 +78,11 @@ const routes = [
                 component:EditBook
             },
             {
+                path:'/show-books/:id',
+                name:'show-book',
+                component:ShowBook
+            },
+            {
                 path:'/edit-category/:id',
                 name:'edit-category',
                 component:EditCategory
@@ -109,6 +116,11 @@ const routes = [
                 path:'/categories-list',
                 name:'categoriesList',
                 component:CategoriesList
+            },
+            {
+                path:'/loans-list',
+                name:'loans-list',
+                component:LoanList
             }
         ]
     

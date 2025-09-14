@@ -1,5 +1,5 @@
 <template>
-    <main class="flex flex-col min-h-screen">
+    <main class="flex flex-col min-h-screen container mx-auto">
         <Header/>
         <section class="grow p-3 mt-10 md:mt-0">
             <router-view/>

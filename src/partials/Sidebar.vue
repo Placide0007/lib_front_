@@ -4,6 +4,7 @@
             <router-link exact-active-class="active" class="p-2" to="/admin">Dashboard</router-link>
             <router-link exact-active-class="active" class="p-2" to="/users-list">Users</router-link>
             <router-link exact-active-class="active" class="p-2" to="/books-list">Books</router-link>
+            <router-link exact-active-class="active" class="p-2" to="/loans-list">Loans</router-link>
             <router-link exact-active-class="active" class="p-2" to="/categories-list">Categories</router-link>
         </ul>
     </aside>

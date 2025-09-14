@@ -13,7 +13,9 @@
     @apply text-slate-700 scroll-p-0;
   }
 
-
+  p.hero-text{
+    font-family: var(--font-primary);
+  }
   * {
     scrollbar-width: thin; 
     scrollbar-color: #a0aec0 #edf2f7;
