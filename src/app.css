@@ -3,7 +3,7 @@
 
 :root {
   --font-primary: 'Dancing script';
-  --font-secondary: 'Montserrat';
+  --font-secondary: 'Poppins';
   --font-tertiary: 'Inter';
 }
 
@@ -38,6 +38,10 @@
 
 
 @layer utilities {
+
+  body{
+    font-family: var(--font-secondary);
+  }
   header .nav-item {
     @apply hover:bg-gray-200 rounded-xs px-3 py-2;
   }
